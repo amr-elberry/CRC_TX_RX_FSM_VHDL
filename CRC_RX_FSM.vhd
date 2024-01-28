@@ -1,6 +1,6 @@
 
 ---------------------------------------------------------------------------------
---FSM_RX_CRC
+FSM_RX_CRC
 
 ----------------------------------------------------------------------------------
 -- Company: 
@@ -56,16 +56,14 @@ begin
       if rising_edge(clk) then
          if (rst = '1') then
             state <= st0;
-			
          else
             state <= next_state;
-			
          end if;        
       end if;
 end process;
 -------------------------------------------------------------------------------------------------------
 -----------------------------------------combinational part--------------------------------------------
-process(state,parity,tx_out)
+process(state)
 begin
 	 case (state) is
 	 
@@ -78,7 +76,7 @@ begin
 				data <="000000";
          when st1 =>
                next_state <= st2;
-					data(0) <= tx_out;
+					data(1) <= tx_out;
 					
          when st2 =>
                next_state <= st3;
